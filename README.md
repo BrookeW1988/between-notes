@@ -23,6 +23,15 @@ This is a local app you install on your own computer, not a hosted website. Down
 
 Download [the normal test PDF](examples/fictional-client.pdf) or [the image-only OCR test PDF](examples/fictional-client-scanned.pdf). In GitHub's file viewer, choose **Download raw file** to save the PDF. Both contain the same invented case. Follow the [test walkthrough](examples/README.md).
 
+## Make it yours
+
+This was built for Australian allied health, but the job it does — hide identifying details,
+use AI, put the details back — is the same in bookkeeping, recruitment, legal, property or
+consulting. [CUSTOMISE.md](CUSTOMISE.md) walks through the three things to change: the
+document formats it writes, what counts as an identifying detail, and the branding. It
+includes copy-paste prompts if you would rather have Claude do the editing. Fork it, change
+it, ship it under your own name — it is MIT licensed.
+
 ## Platforms and setup
 
 Setup downloads dependencies and the English model. After setup, text detection and document processing run locally. On macOS, OCR uses Apple Vision via PyObjC. On Linux or Windows, install the Tesseract executable and its English language data as well; the non-macOS path is implemented but has not been tested here. Windows users can create a virtual environment, install `requirements.txt`, run `python -m spacy download en_core_web_sm`, then run `python app.py` rather than the shell launchers.
