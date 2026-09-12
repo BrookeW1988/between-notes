@@ -1,0 +1,11 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {restoreNote} from '../static/core.js';
+const token='[[PERSON_A1B2C3D4_001]]';
+const mapping={[token]:'Maya Lawson'};
+test('restores repeated tokens exactly',()=>assert.equal(restoreNote(`${token} saw ${token}.`,mapping).text,'Maya Lawson saw Maya Lawson.'));
+test('rejects another client',()=>assert.throws(()=>restoreNote('[[PERSON_FFFFFFFF_001]]',mapping),/unknown/));
+test('rejects damaged tokens',()=>assert.throws(()=>restoreNote('[PERSON_A1B2C3D4_001]',mapping),/damaged/));
+test('rejects absent placeholders when mapping exists',()=>assert.throws(()=>restoreNote('Client is well.',mapping),/No matching/));
+test('one-pass restoration does not interpret original values',()=>assert.equal(restoreNote(token,{[token]:'$& <script>'}).text,'$& <script>'));
+test('reports unused details',()=>assert.equal(restoreNote(token,{...mapping,'[[DATE_A1B2C3D4_002]]':'12/01/2026'}).omitted,1));

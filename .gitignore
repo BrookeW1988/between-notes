@@ -1,0 +1,16 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+coverage/
+*.log
+# Never commit real client material. Only curated fictional fixtures belong in examples/.
+uploads/
+client-data/
+local-data/
